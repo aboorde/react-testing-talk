@@ -1,0 +1,10 @@
+[
+    {
+        "path": "/print",
+        "matchPath": "/print"
+    },
+    {
+        "path": "/",
+        "matchPath": "/*"
+    }
+]

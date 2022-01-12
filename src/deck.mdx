@@ -3,10 +3,10 @@ import { CodeSurfer } from "code-surfer";
 import { nightOwl } from "@code-surfer/themes";
 import overNine from "./itsover1000.jpeg";
 import tdd from "./tdd.png";
-
+import unitJoke from "./unitJoke.jpeg";
 export const theme = themes.future;
 
-# React Testing @ Pie Insurance
+# React Testing and Us
 
 ---
 
@@ -44,7 +44,9 @@ export const theme = themes.future;
 
 ## Why React Testing Library?
 
+- Makes it easier to test components output
 - Light utility functions
+- Helps resemble the way your software is used
 
 ---
 
@@ -71,28 +73,343 @@ describe("Checkbox", () => {
 });
 ```
 
+```jsx 7
+// Checkbox/Checkbox.text.tsx
+import { render } from "@testing-library/react";
+
+const checkboxLabel = "Do you know the muffin man?";
+
+describe("Checkbox", () => {
+  it("should render the label for the checkbox", () => {
+    const { queryByLabelText } = render(
+        <Checkbox label={checkboxLabel} />
+    );
+
+    expect(queryByLabelText(checkboxLabel)).toBeTruthy();
+  });
+});
+```
+
+```jsx 8:10
+// Checkbox/Checkbox.text.tsx
+import { render } from "@testing-library/react";
+
+const checkboxLabel = "Do you know the muffin man?";
+
+describe("Checkbox", () => {
+  it("should render the label for the checkbox", () => {
+    const { queryByLabelText } = render(
+        <Checkbox label={checkboxLabel} />
+    );
+
+    expect(queryByLabelText(checkboxLabel)).toBeTruthy();
+  });
+});
+```
+
+```jsx 12
+// Checkbox/Checkbox.text.tsx
+import { render } from "@testing-library/react";
+
+const checkboxLabel = "Do you know the muffin man?";
+
+describe("Checkbox", () => {
+  it("should render the label for the checkbox", () => {
+    const { queryByLabelText } = render(
+        <Checkbox label={checkboxLabel} />
+    );
+
+    expect(queryByLabelText(checkboxLabel)).toBeTruthy();
+  });
+});
+```
+
 </CodeSurfer>
 
 ---
 
-## SHOW CODE TOGGLE TEST
+<CodeSurfer theme={nightOwl}>
+
+```jsx
+// Checkbox/Checkbox.tsx
+
+const Checkbox = ({label}) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const onChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  return (
+    <label>
+      <input type="checkbox" checked={isChecked} onChange={onChange} />
+      {label}
+    </label>
+  );
+};
+```
+
+</CodeSurfer>
 
 ---
 
-## SHOW CODE WITH CODE TOGGLE
+<CodeSurfer theme={nightOwl}>
+
+```jsx
+// Checkbox/Checkbox.text.tsx
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
+
+const checkboxLabel = "Do you know the muffin man?";
+const checkboxMessage = "Who lives on drury lane?";
+
+describe("Checkbox", () => {
+  it("should render the message when the checkbox is enabled", () => {
+    const { queryByLabelText } = render(
+        <Checkbox message="Who lives on drury lane?" />
+    );
+
+    userEvent.click(queryByLabelText(checkboxLabel));
+    
+    expect(screen.getByText(checkboxMessage)).toBeTruthy();
+  });
+});
+```
+
+```jsx 9
+// Checkbox/Checkbox.text.tsx
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
+
+const checkboxLabel = "Do you know the muffin man?";
+const checkboxMessage = "Who lives on drury lane?";
+
+describe("Checkbox", () => {
+  it("should render the message when the checkbox is enabled", () => {
+    const { queryByLabelText } = render(
+        <Checkbox message="Who lives on drury lane?" />
+    );
+
+    userEvent.click(queryByLabelText(checkboxLabel));
+    
+    expect(screen.getByText(checkboxMessage)).toBeTruthy();
+  });
+});
+```
+
+```jsx 3,14
+// Checkbox/Checkbox.text.tsx
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
+
+const checkboxLabel = "Do you know the muffin man?";
+const checkboxMessage = "Who lives on drury lane?";
+
+describe("Checkbox", () => {
+  it("should render the message when the checkbox is enabled", () => {
+    const { queryByLabelText } = render(
+        <Checkbox message="Who lives on drury lane?" />
+    );
+
+    userEvent.click(queryByLabelText(checkboxLabel));
+    
+    expect(screen.getByText(checkboxMessage)).toBeTruthy();
+  });
+});
+```
+
+```jsx 16
+// Checkbox/Checkbox.text.tsx
+import { render, screen } from "@testing-library/react";
+import userEvent from '@testing-library/user-event';
+
+const checkboxLabel = "Do you know the muffin man?";
+const checkboxMessage = "Who lives on drury lane?";
+
+describe("Checkbox", () => {
+  it("should render the message when the checkbox is enabled", () => {
+    const { queryByLabelText } = render(
+        <Checkbox label={checkboxLabel} message={checkboxMessage} />
+    );
+
+    userEvent.click(queryByLabelText(checkboxLabel));
+    
+    expect(screen.getByText(checkboxMessage)).toBeTruthy();
+  });
+});
+```
+
+</CodeSurfer>
 
 ---
 
-# TEST
+
+<CodeSurfer theme={nightOwl}>
+
+```jsx
+// Checkbox/Checkbox.tsx
+
+const Checkbox = ({label, message}) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const onChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  return (
+    <>
+      {isChecked && (<div>{message}</div>)}
+      <label>
+        <input type="checkbox" checked={isChecked} onChange={onChange} />
+        {label}
+      </label>
+    </>
+  );
+};
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```jsx
+// TextInput.tsx
+it("calls onChange", () => {
+    const onChange = jest.fn();
+    const placeholder = "Username";
+    const { getByPlaceholderText } = setup({
+      onChange,
+      placeholder
+    });
+    const userInput = "userTest123";
+    const textInput = getByPlaceholderText(placeholder);
+    fireEvent.change(textInput as Element, {
+      target: { value: userInput }
+    });
+
+    expect(onChange).toHaveBeenCalled();
+    expect(textInput).toHaveValue(userInput);
+  });
+```
+
+```jsx 3
+// TextInput.tsx
+it("calls onChange", () => {
+    const onChange = jest.fn();
+    const placeholder = "Username";
+    const { getByPlaceholderText } = setup({
+      onChange,
+      placeholder
+    });
+    const userInput = "userTest123";
+    const textInput = getByPlaceholderText(placeholder);
+    fireEvent.change(textInput as Element, {
+      target: { value: userInput }
+    });
+
+    expect(onChange).toHaveBeenCalled();
+    expect(textInput).toHaveValue(userInput);
+  });
+```
+
+```jsx 5:8
+// TextInput.tsx
+it("calls onChange", () => {
+    const onChange = jest.fn();
+    const placeholder = "Username";
+    const { getByPlaceholderText } = setup({
+      onChange,
+      placeholder
+    });
+    const userInput = "userTest123";
+    const textInput = getByPlaceholderText(placeholder);
+    fireEvent.change(textInput as Element, {
+      target: { value: userInput }
+    });
+
+    expect(onChange).toHaveBeenCalled();
+    expect(textInput).toHaveValue(userInput);
+  });
+```
+
+```jsx 15
+// TextInput.tsx
+it("calls onChange", () => {
+    const onChange = jest.fn();
+    const placeholder = "Username";
+    const { getByPlaceholderText } = setup({
+      onChange,
+      placeholder
+    });
+    const userInput = "userTest123";
+    const textInput = getByPlaceholderText(placeholder);
+    fireEvent.change(textInput as Element, {
+      target: { value: userInput }
+    });
+
+    expect(onChange).toHaveBeenCalled();
+    expect(textInput).toHaveValue(userInput);
+  });
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```jsx
+it("must set ziplookup when zipLookupSuccessful", () => {
+  const payload = { locationId: "123", someOtherProperty: "ham" };
+  const state = {
+    ...initialState,
+    zipLookup: undefined
+  };
+  const expected = {
+    ...initialState,
+    zipLookup: {
+      [payload.locationId]: payload
+    }
+  };
+
+  const result = ratingTool(
+    state,
+    ratingToolActions.zipLookupSuccessful(payload)
+  );
+
+  expect(result).toEqual(expected);
+});
+```
+
+</CodeSurfer>
+
+---
+
+## Other Features
+
+- Unmounting behavior
+- More UserEvents (type, upload, hover, paste, etc)
+- Async Requests
+- React Router
+- Much much More
 
 ---
 
 ## WHERE TO GO NEXT
 
+- Practice your TDD
+- Exists in every react UI repository already
+- Read the README located in the root to learn more
+- testing-library.com & jestjs.io
+
+
 ---
 
 ## THANKS
 
-```
-
-```
+<img src={unitJoke} style={{
+    width: '400px',
+    height: 'auto',
+  }} />
