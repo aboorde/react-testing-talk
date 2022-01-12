@@ -2,7 +2,7 @@
   "name": "@aboorde/react-testing-talk",
   "version": "1.0.0",
   "description": "Talkin Bout Testin",
-  "main": "src/deck.mdx",
+  "homepage": "https://aboorde.github.io/react-testing-talk",
   "author": "AJ Boorde",
   "license": "MIT",
   "scripts": {
