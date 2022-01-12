@@ -6,8 +6,10 @@
   "author": "AJ Boorde",
   "license": "MIT",
   "scripts": {
-    "present": "mdx-deck src/deck.mdx",
-    "build": "mdx-deck build src/deck.mdx --no-html --out-dir docs"
+    "start": "mdx-deck ./src/deck.mdx",
+    "clean": "rm -rf .cache build public",
+    "build": "npm run clean && gatsby build --prefix-paths && mv public build",
+    "deploy": "npx gh-pages --dist ./build --branch gh-pages"
   },
   "dependencies": {
     "mdx-deck": "^4.1.1",
@@ -22,7 +24,9 @@
     "@testing-library/react": "^8.0.5",
     "@testing-library/user-event": "^4.2.2",
     "babel-jest": "^24.8.0",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "gatsby-plugin-compile-es6-packages": "^2.1.0",
+    "gatsby-theme-mdx-deck": "4.1.0"
   },
   "resolutions": {
     "remark-mdx": "1.6.22"
