@@ -1,0 +1,98 @@
+import { themes } from "mdx-deck";
+import { CodeSurfer } from "code-surfer";
+import { nightOwl } from "@code-surfer/themes";
+import overNine from "./itsover1000.jpeg";
+import tdd from "./tdd.png";
+
+export const theme = themes.future;
+
+# React Testing @ Pie Insurance
+
+---
+
+## By the numbers
+
+- 23 React Repositories
+- Over 800 files tested (components, pages, redux, utils, etc.)
+- Over 9000 tests across the front end space
+
+
+<img src={overNine} width="25%" height="auto" style={{
+    width: '400px',
+    height: 'auto',
+  }} />
+
+
+---
+
+## Tools We Are Talking About Today
+
+- Jest
+- React Testing Library
+
+---
+
+## Why Jest?
+
+- CLI test control
+- Isolated and parallel
+- Mocking support
+- Snapshot testing
+- Built-in Code Coverage
+
+---
+
+## Why React Testing Library?
+
+- Light utility functions
+
+---
+
+<img src={tdd} />
+
+---
+
+<CodeSurfer theme={nightOwl}>
+
+```jsx
+// Checkbox/Checkbox.text.tsx
+import { render } from "@testing-library/react";
+
+const checkboxLabel = "Do you know the muffin man?";
+
+describe("Checkbox", () => {
+  it("should render the label for the checkbox", () => {
+    const { queryByLabelText } = render(
+        <Checkbox label={checkboxLabel} />
+    );
+
+    expect(queryByLabelText(checkboxLabel)).toBeTruthy();
+  });
+});
+```
+
+</CodeSurfer>
+
+---
+
+## SHOW CODE TOGGLE TEST
+
+---
+
+## SHOW CODE WITH CODE TOGGLE
+
+---
+
+# TEST
+
+---
+
+## WHERE TO GO NEXT
+
+---
+
+## THANKS
+
+```
+
+```

@@ -1,0 +1,30 @@
+{
+  "name": "@aboorde/react-testing-talk",
+  "version": "1.0.0",
+  "description": "Talkin Bout Testin",
+  "main": "src/deck.mdx",
+  "author": "AJ Boorde",
+  "license": "MIT",
+  "scripts": {
+    "present": "mdx-deck src/deck.mdx",
+    "build": "mdx-deck build src/deck.mdx --no-html --out-dir docs"
+  },
+  "dependencies": {
+    "mdx-deck": "^4.1.1",
+    "code-surfer": "^3.1.1",
+    "raw-loader": "^3.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^8.0.5",
+    "@testing-library/user-event": "^4.2.2",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0"
+  },
+  "resolutions": {
+    "remark-mdx": "1.6.22"
+  }
+}
